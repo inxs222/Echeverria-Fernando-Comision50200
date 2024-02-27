@@ -1,0 +1,92 @@
+{% extends 'abonados/home.html' %}
+{% block contenido %}
+
+<div class="container-fluid">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tickets</h1>
+                    <p class="mb-4">Aqui se muestran el listado de Tickets de Sercivio Tecnico.</p>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listado de Tickets</h6>
+                            <h6 class="m-0 font-weight-bold text-secondary">{{mensaje}}</h6>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>N Ticket</th>
+                                            <th>Fecha</th>
+                                            <th>Descripccion</th>
+                                            <th>N Abonado</th>
+                                            <th>Estado</th> 
+                                            <th>Utilidades</th>                                                
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for t in tickets %}
+                                            <tr>
+                                                <td>{{ t.nTicket }}</td>
+                                                <td>{{ t.fecha }}</td>
+                                                <td>{{ t.descrip }}</td>
+                                                <td>{{ t.nAbonado }}</td>
+                                                <td>{{ t.estado }}</td>
+                                                <td>
+                                                    <a
+                                                    href="{% url 'updateTicket' t.id %}"
+                                                    class="btn btn-primary"
+                                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                                                    ><i class="fa fa-edit fa-sm" title="Edit Abonado"></i>
+                                                    </a>
+                                                    <a href="#" 
+                                                    class="btn btn-danger delete-btn"
+                                                    data-id="{{ t.id }}"
+                                                    data-toggle="modal" data-target="#deleteModal"
+                                                    ><i class="fa fa-trash fa-sm" title="Delete Abonado"></i>
+                                                </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            
+            <!-- Confirmacion delete -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Seguro que vas a eliminar {{ a.id }}?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Selecciona <b>Delete</b> para eliminarlo.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" id="deleteConfirmBtn" href="#" >Delete</a>
+                </div>
+            </div>
+            </div>
+            <!-- Traer la var id a borrar -->
+            <script>
+                $(document).ready(function(){
+                    $('.delete-btn').click(function(){
+                        var id = $(this).data('id'); 
+                        var url = '{% url "ticketBorrar" 0 %}'.replace('/0/', '/' + id + '/'); 
+                        $('#deleteConfirmBtn').attr('href', url); 
+                    });
+                });
+                </script>
+{% endblock contenido %}

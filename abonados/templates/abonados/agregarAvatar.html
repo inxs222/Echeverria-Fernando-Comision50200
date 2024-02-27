@@ -1,0 +1,28 @@
+{% extends 'abonados/home.html' %}
+
+
+{% block contenido %}
+<div class="services-table-container">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Editar Avatar</h6>
+        </div>
+        <div class="card-body">
+
+<div class="search-form-container">
+    <h6 class="m-0 font-weight-bold text-secondary">Aqui puedes editar tu Avatar</h6>
+    <hr>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <table>
+            {{ form.as_table }}
+        </table>
+        
+        <input type="submit" value="Guardar">
+    </form>
+</div>
+</div>
+
+
+{% endblock contenido %}

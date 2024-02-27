@@ -1,0 +1,56 @@
+{% extends 'abonados/home.html' %}
+{% block contenido %}
+
+<div class="container-fluid">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Facturas Abonadas.</h1>
+                    <p class="mb-4">Aqui se muestran las facturas ya abonadas.</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Listado de Facturas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>N Abonado</th>
+                                            <th>Servicio</th>
+                                            <th>Periodo</th>
+                                            <th>Importe</th>
+                                            <th>Descargar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for f in facturas %}
+                                        {% if f.pago == True %}
+                                            <tr>
+                                                <td>{{ f.nAbonado }}</td>
+                                                <td>{{ f.servicio }}</td>
+                                                <td>{{ f.date }}</td>
+                                                <td>{{ f.monto }}</td>
+                                                <td>
+                                                    <a href="http://example.com/download/{{f.nAbonado}}_{{f.date}}" 
+                                                        class="btn btn-success btn-circle">
+                                                    <i class="fa fa-download" alt="Download"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+{% endblock contenido %}

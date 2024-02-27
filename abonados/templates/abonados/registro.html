@@ -1,0 +1,24 @@
+{% extends 'abonados/login.html' %}
+
+{% block contenido %}
+                            <div class="col-lg-6 d-none d-lg-block bg-register-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Que bueno! Te vas a Registrar!</h1>
+                                    </div>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                    
+                                        <table>
+                                            {{ form.as_table }}
+                                        </table>
+                                        <hr>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Registarme">
+                                    </form>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                        </div>
+                                </div>
+
+{% endblock contenido %}

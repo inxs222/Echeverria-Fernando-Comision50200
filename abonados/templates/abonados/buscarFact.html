@@ -1,0 +1,27 @@
+{% extends 'abonados/home.html' %}
+
+
+{% block contenido %}
+<div class="services-table-container">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Busqueda de Facturas por periodo</h6>
+
+            
+        </div>
+        <div class="card-body">
+
+<div class="search-form-container">
+<form action="{% url 'buscarFacturas' %}" method="get">
+    {% csrf_token %}
+    <div class="form-group d-flex align-items-center">
+    <p>Periodo de factura a buscar: <input class="form-control"  style="width: 450px;" type="text" name="buscar" id="buscar"></p>
+    <input type="submit" style="margin-left: 10px; margin-top: 8px;" class="btn btn-primary" value="Buscar">
+    </div>
+</form>
+</div>
+</div>
+
+
+{% endblock contenido %}
+
